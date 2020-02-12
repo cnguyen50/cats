@@ -1,23 +1,27 @@
 const fs = require('fs');
 
-const breedDetailsFromFile = function(breed, callback) {
-  //console.log('breedDetailsFromFile: Calling readFile...');
+
+const breedDetailsFromFile = function(breed, printCatBreed) {
+  console.log('breedDetailsFromFile: Calling readFile...');
   fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     console.log("In readFile's Callback: it has the data.");
     if (!error) {
-        callback(data);
+      printCatBreed(data);
     } else {
-       callback(undefined); 
-    }    
+      printCatBreed(undefined);
+    }
   });
-
 };
 
-const printOutCatBreed = breed => {
-    console.log('Return Value: ', data)
+const printCatBreed = (breed) => {
+  console.log('Return Value: ', breed);
 };
 
-//breedDetailsFromFile('Bombay', printOutCatBreed);
+// we try to get the return value
+const bombay = breedDetailsFromFile('Bombay', printCatBreed);
+// console.log('Return Value: ', bombay); 
+
+
 
 
 module.exports = breedDetailsFromFile
